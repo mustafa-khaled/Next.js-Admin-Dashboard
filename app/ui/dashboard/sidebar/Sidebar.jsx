@@ -1,5 +1,4 @@
 import Image from "next/image";
-import MenuLink from "./menuLink/MenuLink";
 import styles from "./sidebar.module.css";
 import {
   MdDashboard,
@@ -13,6 +12,7 @@ import {
   MdHelpCenter,
   MdLogout,
 } from "react-icons/md";
+import MenuLink from "./menuLink/MenuLink";
 
 const menuItems = [
   {
