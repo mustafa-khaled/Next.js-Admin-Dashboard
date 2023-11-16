@@ -5,9 +5,10 @@ import styles from "@/app/ui/dashboard/users/users.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-async function UsersPage() {
-  const { users } = await fetchUsers();
-  console.log(users);
+async function UsersPage({ searchParams }) {
+  const q = searchParams?.q || "";
+
+  const { users } = await fetchUsers(q);
 
   return (
     <div className={styles.container}>
