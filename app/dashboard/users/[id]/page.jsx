@@ -1,28 +1,27 @@
+import { updateUser } from "@/app/lib/actions";
+import { fetchUser } from "@/app/lib/data";
 import styles from "@/app/ui/dashboard/users/singleUser/singleUser.module.css";
 import Image from "next/image";
 
-const user = {
-  id: 1,
-  username: "Mustafa Khaled",
-  email: "mustafa@email.com",
-  phone: "01151747091",
-  address: "Cairo, Egypt.",
-  isAdmin: true,
-  isActive: true,
-};
+async function SingleUserPage({ params }) {
+  const { id } = params;
+  const user = await fetchUser(id);
 
-function SingleUserPage() {
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.imgContainer}>
-          <Image src={"/noavatar.png"} alt="" fill />
+          <Image
+            src={user?.img || "/noavatar.png"}
+            alt={`${user?.username} avatar image`}
+            fill
+          />
         </div>
-        Mustafa Khaled
+        {user?.username}
       </div>
 
       <div className={styles.formContainer}>
-        <form className={styles.form}>
+        <form action={updateUser} className={styles.form}>
           <input type="hidden" name="id" value={user.id} />
           <label>Username</label>
           <input type="text" name="username" placeholder={user.username} />

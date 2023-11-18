@@ -1,21 +1,17 @@
+import { fetchProduct } from "@/app/lib/data";
 import styles from "@/app/ui/dashboard/products/singleProduct/singleProduct.module.css";
 import Image from "next/image";
 
-function ProductSinglePage() {
-  const product = {
-    id: 1,
-    title: "laptop",
-    price: 3000,
-    stock: 400,
-    color: "#ccd",
-    desc: "Description",
-  };
+async function ProductSinglePage({ params }) {
+  const { id } = params;
+
+  const product = await fetchProduct(id);
 
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.imgContainer}>
-          <Image src="/noavatar.png" alt="" fill />
+          <Image src={product?.img || "/noavatar.png"} alt="" fill />
         </div>
         {product.title}
       </div>
