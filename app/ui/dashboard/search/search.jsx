@@ -5,13 +5,14 @@ import styles from "./search.module.css";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
-function Search({ placeholder }) {
+const Search = ({ placeholder }) => {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const pathname = usePathname();
 
   const handleSearch = useDebouncedCallback((e) => {
     const params = new URLSearchParams(searchParams);
+
     params.set("page", 1);
 
     if (e.target.value) {
@@ -19,7 +20,6 @@ function Search({ placeholder }) {
     } else {
       params.delete("q");
     }
-
     replace(`${pathname}?${params}`);
   }, 300);
 
@@ -34,6 +34,6 @@ function Search({ placeholder }) {
       />
     </div>
   );
-}
+};
 
 export default Search;

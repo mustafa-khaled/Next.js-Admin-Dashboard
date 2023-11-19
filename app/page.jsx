@@ -1,5 +1,8 @@
+// TODO
 const Homepage = () => {
-  return <div>Homepage</div>;
-};
+  return (
+    <div>Homepage</div>
+  )
+}
 
-export default Homepage;
+export default Homepage

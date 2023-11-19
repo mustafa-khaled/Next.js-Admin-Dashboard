@@ -1,16 +1,15 @@
-import { fetchProducts } from "@/app/lib/data";
-import { deleteProduct } from "@/app/lib/actions";
-import Pagination from "@/app/ui/dashboard/pagination/pagination";
+import Image from "next/image";
+import Link from "next/link";
 import styles from "@/app/ui/dashboard/products/products.module.css";
 import Search from "@/app/ui/dashboard/search/search";
-import Link from "next/link";
-import Image from "next/image";
+import Pagination from "@/app/ui/dashboard/pagination/pagination";
+import { fetchProducts } from "@/app/lib/data";
+import { deleteProduct } from "@/app/lib/actions";
 
-async function ProductsPage({ searchParams }) {
+const ProductsPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-
-  const { products, count } = await fetchProducts(q, page);
+  const { count, products } = await fetchProducts(q, page);
 
   return (
     <div className={styles.container}>
@@ -72,6 +71,6 @@ async function ProductsPage({ searchParams }) {
       <Pagination count={count} />
     </div>
   );
-}
+};
 
 export default ProductsPage;
